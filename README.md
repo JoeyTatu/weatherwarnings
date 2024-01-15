@@ -1,11 +1,11 @@
 # Weather Warnings Scraper
 
-![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/JoeyTatu/weatherwarningsscraper)
-![GitHub](https://img.shields.io/github/license/JoeyTatu/weatherwarningsscraper)
+![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/JoeyTatu/weatherwarnings)
+![GitHub](https://img.shields.io/github/license/JoeyTatu/weatherwarnings)
 
 ## Overview
 
-`weatherwarningsscraper` is a Go package that provides a utility for retrieving weather warnings from a specified URL. It includes a function `GetWarnings` that returns a slice of `Warning` structs.
+`weatherwarningsscraper` is a Go package that provides a utility for retrieving weather warnings from Met Éireann. It includes a function `GetWarnings` that returns a slice of `Warning` structs.
 
 ## Installation
 

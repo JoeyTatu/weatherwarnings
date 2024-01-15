@@ -5,7 +5,7 @@
 
 ## Overview
 
-`weatherwarningsscraper` is a Go package that provides a utility for retrieving weather warnings from Met Éireann. It includes a function `GetWarnings` that returns a slice of `Warning` structs.
+`weatherwarnings` is a Go package that provides a utility for retrieving weather warnings from **[Met Éireann](httpd://met.ie)**. It includes a function `GetWarnings` that returns a slice of `Warning` structs.
 
 ## Installation
 
@@ -18,6 +18,7 @@ To use this package in your Go project, run:
 package main
 
 import (
+    "bufio"
 	"fmt"
 	"log"
 
@@ -25,7 +26,13 @@ import (
 )
 
 func main() {
-	weatherWarnings, err := weatherwarnings.GetWarnings()
+    // Day should equal 'today', 'tomorrow' or 'dayAfterTomorrow'
+    fmt.Print("Enter the day:\n> ")
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Scan()
+	day := scanner.Text()
+
+	weatherWarnings, err := weatherwarnings.GetWarnings(day)
 	if err != nil {
 		log.Fatal(err)
 	}

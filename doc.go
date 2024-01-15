@@ -2,27 +2,37 @@
 // It includes a function GetWarnings that returns a slice of Warning structs.
 //
 // Example usage:
-//   package main
+// package main
 //
-//   import (
-//     "fmt"
-//     "log"
-//     "github.com/JoeyTatu/weatherwarnings"
-//   )
+// import (
 //
-//   func main() {
-//     warnings, err := weatherwarnings.GetWarnings()
-//     if err != nil {
-//       log.Fatal(err)
-//     }
+//	    "bufio"
+//		"fmt"
+//		"log"
 //
-//     // Print or use the warnings as needed
-//     for _, w := range warnings {
-//       fmt.Printf("Title: %s\n", w.Title)
-//       fmt.Printf("Description: %s\n", w.Description)
-//       fmt.Printf("Valid: %s\n", w.Valid)
-//       fmt.Printf("Issued: %s\n", w.Issued)
-//       fmt.Println("-----------")
-//     }
-//   }
+//		"github.com/JoeyTatu/weatherwarnings"
+//
+// )
+//
+//	func main() {
+//	    // Day should equal 'today', 'tomorrow' or 'dayAfterTomorrow'
+//	    fmt.Print("Enter the day:\n> ")
+//		scanner := bufio.NewScanner(os.Stdin)
+//		scanner.Scan()
+//		day := scanner.Text()
+//
+//		weatherWarnings, err := weatherwarnings.GetWarnings(day)
+//		if err != nil {
+//			log.Fatal(err)
+//		}
+//
+//		// Print or use the warnings as needed
+//		for _, w := range weatherWarnings {
+//			fmt.Printf("Title: %s\n", w.Title)
+//			fmt.Printf("Description: %s\n", w.Description)
+//			fmt.Printf("Valid: %s\n", w.Valid)
+//			fmt.Printf("Issued: %s\n", w.Issued)
+//			fmt.Println("-----------")
+//		}
+//	}
 package weatherwarnings

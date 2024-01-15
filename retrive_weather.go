@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"net/http"
 	"strings"
+	"time"
 
 	"github.com/PuerkitoBio/goquery"
 )
 
-// Warning represents the information for each warning
 type Warning struct {
 	Title       string
 	Description string
@@ -16,58 +16,83 @@ type Warning struct {
 	Issued      string
 }
 
-func GetWarnings() ([]Warning, error) {
-	url := "https://www.met.ie/warnings/today/"
+func getDayAfterTomorrow() (string, error) {
+	currentTime := time.Now()
 
-	// Make a GET request to the URL
+	dayAfterTomorrow := currentTime.Add(48 * time.Hour)
+	nameOfDay := dayAfterTomorrow.Weekday().String()
+	nameOfDay = strings.ToLower(nameOfDay)
+
+	return nameOfDay, nil
+}
+
+func GetWarnings(day ...string) ([]Warning, error) {
+	var (
+		inputDay  string
+		nameOfDay string
+	)
+
+	if len(day) > 0 {
+		if day[0] != "today" && day[0] != "tommorow" && day[0] != "dayAfterTomorrow" {
+			err := fmt.Errorf("invalid day name")
+			return nil, err
+		}
+		inputDay = day[0]
+	}
+
+	if inputDay == "" {
+		inputDay = "today"
+	}
+
+	if inputDay == "dayAfterTomorrow" {
+		result, err := getDayAfterTomorrow()
+		if err != nil {
+			return nil, err
+		}
+		nameOfDay = result
+	}
+
+	// Use nameOfDay in the rest of the code
+	url := "https://www.met.ie/warnings/" + nameOfDay
+
 	response, err := http.Get(url)
 	if err != nil {
 		return nil, err
 	}
 	defer response.Body.Close()
 
-	// Parse the HTML document
 	doc, err := goquery.NewDocumentFromReader(response.Body)
 	if err != nil {
 		return nil, err
 	}
 
-	// Initialize a slice of Warning
 	warnings := []Warning{}
 
-	// Iterate over each h2 element
 	doc.Find("h2").Each(func(i int, s *goquery.Selection) {
-		// Get the text of the h2 element
 		title := strings.TrimSpace(s.Text())
 
-		// Skip certain titles
 		if title == "Search" || title == "Connect" || title == "Download our apps" {
 			return
 		}
 
-		// Create a new Warning instance
 		warning := Warning{}
 
-		// Set the Title from the text of the h2 element
 		warning.Title = title
 
-		// Find the next span with class "sr-only"
 		statusSpan := s.Next().Find("span.sr-only")
 		if statusSpan != nil {
-			// Set the Description from the text of the span
+
 			warning.Description = strings.TrimSpace(strings.ReplaceAll(statusSpan.Text(), "<br />", "\n"))
 		}
 
-		// Find the next strong element with class "sr-only"
 		strongElement := s.Next().Find("strong.sr-only")
 		if strongElement != nil {
-			// Set the Description from the text of the strong element
+
 			warning.Description = strings.TrimSpace(strings.ReplaceAll(strongElement.Text(), "<br />", "\n"))
 		}
 
-		// Find the next p elements
 		s.Next().Find("p").Each(func(j int, p *goquery.Selection) {
-			// Set the Valid and Issued fields based on the content of p elements
+
 			text := strings.TrimSpace(strings.ReplaceAll(p.Text(), "<br />", "\n"))
 			switch {
 			case strings.Contains(text, "Valid"):
@@ -77,19 +102,18 @@ func GetWarnings() ([]Warning, error) {
 			}
 		})
 
-		// Append the warning to the slice
 		warnings = append(warnings, warning)
 	})
 
-	// Build the result string
-	var result string
-	for _, w := range warnings {
-		result += fmt.Sprintf("Title: %s\n", w.Title)
-		result += fmt.Sprintf("Description: %s\n", w.Description)
-		result += fmt.Sprintf("Valid: %s\n", w.Valid)
-		result += fmt.Sprintf("Issued: %s\n", w.Issued)
-		result += "-----------\n"
-	}
+	// Testing:
+	// var result string
+	// for _, w := range warnings {
+	// 	result += fmt.Sprintf("Title: %s\n", w.Title)
+	// 	result += fmt.Sprintf("Description: %s\n", w.Description)
+	// 	result += fmt.Sprintf("Valid: %s\n", w.Valid)
+	// 	result += fmt.Sprintf("Issued: %s\n", w.Issued)
+	// 	result += "-----------\n"
+	// }
 
 	return warnings, nil
 }

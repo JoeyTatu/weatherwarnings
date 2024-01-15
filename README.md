@@ -11,7 +11,7 @@
 
 To use this package in your Go project, run:
 
-```go get -u github.com/JoeyTatu/weatherwarningsscraper```
+```go get -u github.com/JoeyTatu/weatherwarnings```
 
 # Example usage:
 ```
@@ -21,11 +21,11 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/JoeyTatu/weatherwarningsscraper"
+	"github.com/JoeyTatu/weatherwarnings"
 )
 
 func main() {
-	weatherWarnings, err := weatherwarningsscraper.GetWarnings()
+	weatherWarnings, err := weatherwarnings.GetWarnings()
 	if err != nil {
 		log.Fatal(err)
 	}

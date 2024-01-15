@@ -5,7 +5,7 @@
 
 ## Overview
 
-`weatherwarnings` is a Go package that provides a utility for retrieving weather warnings from **[Met Éireann](httpd://met.ie)**. It includes a function `GetWarnings` that returns a slice of `Warning` structs.
+`weatherwarnings` is a Go package that provides a utility for retrieving weather warnings from **[Met Éireann](https://met.ie)**. It includes a function `GetWarnings` that returns a slice of `Warning` structs.
 
 ## Installation
 
@@ -27,6 +27,7 @@ import (
 
 func main() {
     // Day should equal 'today', 'tomorrow' or 'dayAfterTomorrow'
+    // If no day entered, defaults to 'today'
     fmt.Print("Enter the day:\n> ")
 	scanner := bufio.NewScanner(os.Stdin)
 	scanner.Scan()

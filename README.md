@@ -1,7 +1,7 @@
 # Weather Warnings Scraper
 
-![GitHub go.mod Go version](https://github/JoeyTatu/weatherwarningsscraper/go.mod)
-![GitHub](https://github/JoeyTatu/weatherwarningsscraper/LICENCE)
+[GitHub go.mod Go version](https://github/JoeyTatu/weatherwarningsscraper/go.mod)
+[GitHub](https://github/JoeyTatu/weatherwarningsscraper/LICENCE)
 
 ## Overview
 

@@ -17,13 +17,13 @@ To use this package in your Go project, run:
 ```
 package main
 
-import (
-    "bufio"
-	"fmt"
-	"log"
+	import (
+		"bufio"
+		"fmt"
+		"log"
 
-	"github.com/JoeyTatu/weatherwarnings"
-)
+		"github.com/JoeyTatu/weatherwarnings"
+	)
 
 func main() {
     // Day should equal 'today', 'tomorrow' or 'dayAfterTomorrow'

@@ -1,4 +1,4 @@
-module github.com/joeytatu/weatherwarnings
+module github.com/JoeyTatu/weatherwarnings
 
 go 1.21.6
 

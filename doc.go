@@ -4,15 +4,15 @@
 // Example usage:
 // package main
 //
-// import (
+//		import (
 //
-//	    "bufio"
-//		"fmt"
-//		"log"
+//	    	"bufio"
+//			"fmt"
+//			"log"
 //
-//		"github.com/JoeyTatu/weatherwarnings"
+//			"github.com/JoeyTatu/weatherwarnings"
 //
-// )
+//		)
 //
 //	func main() {
 //	    // Day should equal 'today', 'tomorrow' or 'dayAfterTomorrow'

@@ -26,14 +26,14 @@ package main
 	)
 
 func main() {
-	// Day should equal 'today', 'tomorrow' or 'dayAfterTomorrow'
-	// If no day entered, defaults to 'today'
-	fmt.Print("Enter the day:\n> ")
-	scanner := bufio.NewScanner(os.Stdin)
-	scanner.Scan()
-	day := scanner.Text()
 	
-	weatherWarnings, err := weatherwarnings.GetWarnings(day)
+	// Valid requests:
+	// weatherwarnings.GetWarnings("today")
+	// weatherwarnings.GetWarnings("tomorrow")
+	// weatherwarnings.GetWarnings("dayAfterTomorrow")
+	// weatherwarnings.GetWarnings() // defaults to "today"
+
+	weatherWarnings, err := weatherwarnings.GetWarnings("today")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -48,3 +48,4 @@ func main() {
 	}
 }
 ```
+ 

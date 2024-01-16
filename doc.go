@@ -3,36 +3,35 @@
 //
 // Example usage:
 // package main
+
+// 		import (
+// 			"bufio"
+// 			"fmt"
+// 			"log"
 //
-//		import (
+// 			"github.com/JoeyTatu/weatherwarnings"
+// 		)
 //
-//	    	"bufio"
-//			"fmt"
-//			"log"
+// 		func main() {
 //
-//			"github.com/JoeyTatu/weatherwarnings"
-//
-//		)
-//
-//	func main() {
-//	    // Day should equal 'today', 'tomorrow' or 'dayAfterTomorrow'
-//	    fmt.Print("Enter the day:\n> ")
-//		scanner := bufio.NewScanner(os.Stdin)
-//		scanner.Scan()
-//		day := scanner.Text()
-//
-//		weatherWarnings, err := weatherwarnings.GetWarnings(day)
-//		if err != nil {
-//			log.Fatal(err)
-//		}
-//
-//		// Print or use the warnings as needed
-//		for _, w := range weatherWarnings {
-//			fmt.Printf("Title: %s\n", w.Title)
-//			fmt.Printf("Description: %s\n", w.Description)
-//			fmt.Printf("Valid: %s\n", w.Valid)
-//			fmt.Printf("Issued: %s\n", w.Issued)
-//			fmt.Println("-----------")
-//		}
-//	}
+// 		// Valid requests:
+// 		// weatherwarnings.GetWarnings("today")
+// 		// weatherwarnings.GetWarnings("tomorrow")
+// 		// weatherwarnings.GetWarnings("dayAfterTomorrow")
+// 		// weatherwarnings.GetWarnings() // defaults to "today"
+
+// 		weatherWarnings, err := weatherwarnings.GetWarnings("today")
+// 		if err != nil {
+// 			log.Fatal(err)
+// 		}
+
+// 		// Print or use the warnings as needed
+// 		for _, w := range weatherWarnings {
+// 			fmt.Printf("Title: %s\n", w.Title)
+// 			fmt.Printf("Description: %s\n", w.Description)
+// 			fmt.Printf("Valid: %s\n", w.Valid)
+// 			fmt.Printf("Issued: %s\n", w.Issued)
+// 			fmt.Println("-----------")
+// 		}
+// }
 package weatherwarnings

@@ -27,24 +27,21 @@ func getDayAfterTomorrow() (string, error) {
 }
 
 func GetWarnings(day ...string) ([]Warning, error) {
-	var (
-		inputDay  string
-		nameOfDay string
-	)
+	var nameOfDay string
 
 	if len(day) > 0 {
 		if day[0] != "today" && day[0] != "tommorow" && day[0] != "dayAfterTomorrow" {
 			err := fmt.Errorf("invalid day name")
 			return nil, err
 		}
-		inputDay = day[0]
+		nameOfDay = day[0]
 	}
 
-	if inputDay == "" {
-		inputDay = "today"
+	if len(day) == 0 {
+		nameOfDay = "today"
 	}
 
-	if inputDay == "dayAfterTomorrow" {
+	if day[0] == "dayAfterTomorrow" {
 		result, err := getDayAfterTomorrow()
 		if err != nil {
 			return nil, err
@@ -52,7 +49,6 @@ func GetWarnings(day ...string) ([]Warning, error) {
 		nameOfDay = result
 	}
 
-	// Use nameOfDay in the rest of the code
 	url := "https://www.met.ie/warnings/" + nameOfDay
 
 	response, err := http.Get(url)
@@ -104,16 +100,6 @@ func GetWarnings(day ...string) ([]Warning, error) {
 
 		warnings = append(warnings, warning)
 	})
-
-	// Testing:
-	// var result string
-	// for _, w := range warnings {
-	// 	result += fmt.Sprintf("Title: %s\n", w.Title)
-	// 	result += fmt.Sprintf("Description: %s\n", w.Description)
-	// 	result += fmt.Sprintf("Valid: %s\n", w.Valid)
-	// 	result += fmt.Sprintf("Issued: %s\n", w.Issued)
-	// 	result += "-----------\n"
-	// }
 
 	return warnings, nil
 }

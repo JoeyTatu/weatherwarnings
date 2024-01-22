@@ -19,16 +19,14 @@ To use this package in your Go project, run:
 ```
 package main
 
-	import (
-		"bufio"
-		"fmt"
-		"log"
+import (
+	"fmt"
+	"log"
 
-		"github.com/JoeyTatu/weatherwarnings"
-	)
+	"github.com/JoeyTatu/weatherwarnings"
+)
 
 func main() {
-	
 	// Valid requests:
 	// weatherwarnings.GetWarnings("today")
 	// weatherwarnings.GetWarnings("tomorrow")
@@ -39,7 +37,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	
+
 	// Print or use the warnings as needed
 	for _, w := range weatherWarnings {
 		fmt.Printf("Title: %s\n", w.Title)

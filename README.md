@@ -2,7 +2,7 @@
 
 ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/JoeyTatu/weatherwarnings)
 ![GitHub](https://img.shields.io/github/license/JoeyTatu/weatherwarnings)
-
+[![Go Report Card](https://goreportcard.com/badge/github.com/JoeyTatu/weatherwarnings)](https://goreportcard.com/report/github.com/JoeyTatu/weatherwarnings)
 [![Go Reference](https://pkg.go.dev/badge/github.com/go-chi/render.svg)](https://pkg.go.dev/github.com/JoeyTatu/weatherwarnings)
 
 ## Overview
